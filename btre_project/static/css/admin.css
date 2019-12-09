@@ -1,0 +1,38 @@
+/*Update the header to be bigger and use the BT realty colors*/
+#header {
+    height: 50px;
+    background: #10284e;
+    color: #fff;
+}
+
+#branding h1 {
+    color: #fff;
+}
+
+/*update links to use the BT Realty colors*/
+a:link,
+a:visited {
+    color: #10284e;
+}
+
+/*Update the breadcrumbs area to look more like the breadcrumbs on the main site.*/
+div.breadcrumbs {
+    background: #30caa0;
+    color: #10284e;
+}
+
+/*Change the color of the links in the breadcrumbs area*/
+div.breadcrumbs a {
+    color: #333333;
+}
+
+/*Change the background color of the admin page captions for each section*/
+.module h2, .module caption, .inline-group h2 {
+    background: #30caa0;
+}
+
+/*Change the background color of the buttons when adding or saving a new entry on the admin pages */
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #10284e;
+    color: #fff;
+}
