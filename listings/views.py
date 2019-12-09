@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 
 from .models import Listing
@@ -8,7 +9,6 @@ from .models import Listing
 # views.serach defined in the listings/urls.py file.
 
 def index(request):
-    # noinspection SpellCheckingInspection
     """This is the default link for the listings app. See the btre_project/urls.py to see the links
 
         Args:
@@ -17,13 +17,19 @@ def index(request):
             render: call to render with the request and URL
         """
     # This will get of the listing objects that can be passed into our web page
-    listings = Listing.objects.all()
+    # Add an order by so that most recent listings are shown first.
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)
+
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+
     # a dictionary can be used as an argument to pass information to the template or html page dynamically.
     # for example, if we define a dictionary that has a key of 'name', and a value (e.g. Dave) we can include that here
     # and then in the HTML file referenced (i.e. listings.html in this case) we can use {{ <key> }} notation to
     # dynamically populate this information.
     context = {
-            'listings': listings
+            'listings': paged_listings
     }
     return render(request, 'listings/listings.html', context)
 
