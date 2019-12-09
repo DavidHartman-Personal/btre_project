@@ -19,7 +19,11 @@ def index(request):
     }
     return render(request, 'listings/listings.html', context)
 
-def listing(request):
+# Passing in listing_id to the listing request.
+# This will add the listing.id value to the end of the URL
+# e.g. http://127.0.0.1:8000/listings/1
+# Chapter 7 - Display Listings in Template
+def listing(request, listing_id):
     return render(request, 'listings/listing.html')
 
 def search(request):
