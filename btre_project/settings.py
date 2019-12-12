@@ -151,3 +151,8 @@ EMAIL_HOST_USER = 'david.j.hartman@gmail.com'
 # Replace with password as needed.
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
